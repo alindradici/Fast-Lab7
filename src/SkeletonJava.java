@@ -161,16 +161,23 @@ public class SkeletonJava {
         return r;
     }
     //modify
-    public static void modifyMe(String word,String newWord){
+    public static void modifyMe(String word){
         int cont = searchMe(word);
+        int decizie=0;
 
         if(cont==-1){
             printConsole("contactul nu exista");
         }
         else{
-
-            listaContacte[cont].setName(newWord);
-
+            decizie = readIntConsole("1-modifica numele\n2-modifica numarul");
+            if(decizie==1){
+                String newName = readStringConsole("introduceti nume nou: ");
+                listaContacte[cont].setName(newName);
+            }
+            else if(decizie==2){
+                String newPhone = readStringConsole("introduceti telefon nou : ");
+                listaContacte[cont].setPhone(newPhone);
+            }
         }
     }
     //delete
@@ -190,6 +197,7 @@ public class SkeletonJava {
        int object;
         String word;
         String word2;
+        String word3;
         do {
             printConsole("1-adauga\n2-afiseaza\n3-cauta contact\n4-modifica contact\n5-sterge\n6-iesire\n" );
              object = readIntConsole("enter number :");
@@ -205,9 +213,10 @@ public class SkeletonJava {
                 word = readStringConsole("cauta contact: ");
                 System.out.println(searchMe(word));
             }else if(object == 4){
+
                 word= readStringConsole("contactul : ");
-                word2 = readStringConsole("contactul nou: ");
-                modifyMe(word,word2);
+                modifyMe(word);
+
             }else if(object == 5){
                 word = readStringConsole("sterge contact :");
                 deleteMe(word);

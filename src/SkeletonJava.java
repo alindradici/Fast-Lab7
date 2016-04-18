@@ -121,38 +121,40 @@ public class SkeletonJava {
     }/* end of utility methods*/
 
 
-    static String[] contacte = new String[3]; //the mighty array
+    static Person[] listaContacte = new Person [10];  //the mighty array
     static int index =0;
 
 
     //  listing method
     public static void printMe() {
-        for (int i = 0; i < contacte.length; i++) {
-            System.out.println(contacte[i]);
-        }
-    }
+        for (int i = 0; i < listaContacte.length; i++) {
 
-    // add method
-    public static void addMe(String adaug) {
-        int cautIndex = searchMe(adaug);
-        if(cautIndex==-1) {
-            try {
-                contacte[index] = adaug;
-                index++;
-            }catch(Exception e){
-                printConsole("numarul de contacte depasit");
+           if(listaContacte[i]!=null){
+            System.out.println(listaContacte[i].getName());
+            System.out.println(listaContacte[i].getPhone());
             }
         }
-        else{
-            printConsole("contactul exista si se afla pe pozitia " + cautIndex);
+    }
+    // add method
+    public static void addMe(String name,String phone) {
+
+        try {
+
+            Person p = new Person(name, phone);
+            listaContacte[index] = p;
+            index++;
+
+        }catch (Exception e){
+            printConsole("lista contacte supraincarcata");
         }
     }
 
     // search method
     public static int searchMe(String contact) {
          int r =-1;
-        for (int i = 0; i < contacte.length; i++) {
-            if (contact.equals(contacte[i])) {
+        for (int i = 0; i < listaContacte.length; i++) {
+          Person p = listaContacte[i];
+            if (p.getName().equals(contact)) {
                 r=i;break;
             }
         }
@@ -161,11 +163,14 @@ public class SkeletonJava {
     //modify
     public static void modifyMe(String word,String newWord){
         int cont = searchMe(word);
+
         if(cont==-1){
             printConsole("contactul nu exista");
         }
         else{
-            contacte[cont]=newWord;
+
+            listaContacte[cont].setName(newWord);
+
         }
     }
     //delete
@@ -175,14 +180,14 @@ public class SkeletonJava {
             printConsole("contactul nu exista");
         }
         else{
-            contacte[cont]=null;
+            listaContacte[cont]=null;
         }
     }
 
     /* here starts the main class */
     public static void main(String[] arguments) {
 
-        int object;
+       int object;
         String word;
         String word2;
         do {
@@ -192,7 +197,8 @@ public class SkeletonJava {
             //  printMe();
             if (object == 1) {
                 word = readStringConsole("adauga contact: ");
-                addMe(word);
+                word2 = readStringConsole("adauga telefon: ");
+                addMe(word,word2);
             } else if (object == 2) {
                 printMe();
             } else if (object == 3) {
@@ -208,6 +214,8 @@ public class SkeletonJava {
             }
 
         }while (object!=6);
+
+
     }//end of main method
 }
 // end of class

@@ -118,21 +118,23 @@ public class SkeletonJava {
         } catch (Exception e) {
             System.out.println("file not found");
         }
-    }/* end of utility methods*/
+    }/* end of utility methods+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 
-    static Person[] listaContacte = new Person [10];  //the mighty array
+      //the mighty array************************************************
+    static List<Person> list = new ArrayList<>();
     static int index =0;
 
 
     //  listing method
     public static void printMe() {
-        for (int i = 0; i < listaContacte.length; i++) {
+        for (int i = 0; i < list.size(); i++) {
 
-           if(listaContacte[i]!=null){
-            System.out.println(listaContacte[i].getName());
-            System.out.println(listaContacte[i].getPhone());
+            if(list.get(i)!= null){
+                System.out.println(list.get(i).getName());
+                System.out.println(list.get(i).getPhone());
             }
+
         }
     }
     // add method
@@ -141,8 +143,7 @@ public class SkeletonJava {
         try {
 
             Person p = new Person(name, phone);
-            listaContacte[index] = p;
-            index++;
+            list.add(p);
 
         }catch (Exception e){
             printConsole("lista contacte supraincarcata");
@@ -152,9 +153,10 @@ public class SkeletonJava {
     // search method
     public static int searchMe(String contact) {
          int r =-1;
-        for (int i = 0; i < listaContacte.length; i++) {
-          Person p = listaContacte[i];
-            if (p.getName().equals(contact)) {
+        for (int i = 0; i < list.size(); i++) {
+          Person p = list.get(i);
+            String nume = list.get(i).getName();
+            if (list.contains(nume)){
                 r=i;break;
             }
         }
@@ -172,11 +174,11 @@ public class SkeletonJava {
             decizie = readIntConsole("1-modifica numele\n2-modifica numarul");
             if(decizie==1){
                 String newName = readStringConsole("introduceti nume nou: ");
-                listaContacte[cont].setName(newName);
+                list.get(cont).setName(newName);
             }
             else if(decizie==2){
                 String newPhone = readStringConsole("introduceti telefon nou : ");
-                listaContacte[cont].setPhone(newPhone);
+                list.get(cont).setPhone(newPhone);
             }
         }
     }
@@ -187,7 +189,7 @@ public class SkeletonJava {
             printConsole("contactul nu exista");
         }
         else{
-            listaContacte[cont]=null;
+            list.remove(cont);
         }
     }
 

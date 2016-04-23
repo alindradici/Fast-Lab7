@@ -155,8 +155,8 @@ public class SkeletonJava {
          int r =-1;
         for (int i = 0; i < list.size(); i++) {
           Person p = list.get(i);
-            String nume = list.get(i).getName();
-            if (list.contains(nume)){
+
+            if (list.get(i).getName().equals(contact)){
                 r=i;break;
             }
         }

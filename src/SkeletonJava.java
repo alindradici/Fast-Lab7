@@ -189,7 +189,7 @@ public class SkeletonJava {
             printConsole("contactul nu exista");
         }
         else{
-            list.remove(cont);
+            list.remove(list.get(cont));
         }
     }
 
